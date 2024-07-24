@@ -1,7 +1,11 @@
 
-body{
+body {
     background-image: url(/images/chainsaw-man-makima-eyes-hd-wallpaper-uhdpaper.com-59@1@j.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
+
 .outerdiv{
     width: 30%;
     height: 60vh;
