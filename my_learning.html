@@ -11,9 +11,9 @@
     
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-          <span class="fs-4" style="padding: 10px;">FindmyPlan</span>
+          <span class="fs-4">FindmyPlan</span>
         </a>
-  
+        
         <ul class="nav nav-pills">
           <li class="nav-item"><a href="home.html" target="_self" class="nav-link">Home</a></li>
           <li class="nav-item"><a href="my_learning.html" target="_self" class="nav-link active" aria-current="page">My learning</a></li>
@@ -22,10 +22,10 @@
     </header>
 
     <div class="d-flex gap-3 justify-content py-5" style="padding-left: 10px;">
-        <button class="btn mslp btn-outline-secondary d-inline-flex align-items-center" type="button" onclick="showSection('new-plan')">
+        <button class="btn btn-outline-secondary d-inline-flex align-items-center inactive" type="button" onclick="showSection('new-plan')">
           New Skill learning Plan
         </button>
-        <button class="btn slp btn-outline-secondary d-inline-flex align-items-center" type="button" onclick="showSection('plans')">
+        <button class="btn btn-outline-secondary d-inline-flex align-items-center inactive" type="button" onclick="showSection('plans')">
           Skill learning plans
         </button>
     </div>
@@ -42,7 +42,37 @@
         <p>Details about skill learning plans go here...</p>
     </div>
 
-    <script type="module" src="script.js"></script>
+
+
+
+
+
+
+
+    <script>
+        function showSection(sectionId) {
+        // Hide all sections
+        const sections = document.querySelectorAll('.content-section');
+        sections.forEach(section => section.classList.remove('active-section'));
+
+        // Show the selected section
+        document.getElementById(sectionId).classList.add('active-section');
+
+        // Remove 'active' class from all buttons and add 'inactive' class
+        const buttons = document.querySelectorAll('.btn');
+        buttons.forEach(button => {
+            button.classList.remove('active');
+            button.classList.add('inactive');
+        });
+
+        // Add 'active' class to the clicked button
+        const activeButton = document.querySelector(`button[onclick="showSection('${sectionId}')"]`);
+        if (activeButton) {
+            activeButton.classList.add('active');
+            activeButton.classList.remove('inactive');
+        }
+    }
+    </script>
 
 </body>
 </html>
