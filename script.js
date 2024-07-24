@@ -23,10 +23,12 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
   e.preventDefault();
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
+  
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       console.log('Signed in:', userCredential.user);
-      // Redirect or perform other actions after successful login
+      // Redirect to home.html
+      window.location.href = 'home.html';
     })
     .catch((error) => {
       console.error('Error signing in:', error.message);
