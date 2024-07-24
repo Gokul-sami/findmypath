@@ -18,16 +18,3 @@
 .signinform{
     width: 95%;
 }
-
-element {
-    width: 280px;
-  }
-  .p-3 {
-    padding: 1rem !important;
-  }
-  .flex-shrink-0 {
-    flex-shrink: 0 !important;
-  }
-  *, ::after, ::before {
-    box-sizing: border-box;
-  }
