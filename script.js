@@ -1,17 +1,16 @@
-
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
 
 // Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyAPAt8yoHglBADaGEhWGM1kZVgOzWhw8rE",
-    authDomain: "findyourpath-bcf56.firebaseapp.com",
-    projectId: "findyourpath-bcf56",
-    storageBucket: "findyourpath-bcf56.appspot.com",
-    messagingSenderId: "205317328979",
-    appId: "1:205317328979:web:d49c38e66dc9821a4276a6",
-    measurementId: "G-2YW6EBNFN2"
-  };
+  apiKey: "AIzaSyAPAt8yoHglBADaGEhWGM1kZVgOzWhw8rE",
+  authDomain: "findyourpath-bcf56.firebaseapp.com",
+  projectId: "findyourpath-bcf56",
+  storageBucket: "findyourpath-bcf56.appspot.com",
+  messagingSenderId: "205317328979",
+  appId: "1:205317328979:web:d49c38e66dc9821a4276a6",
+  measurementId: "G-2YW6EBNFN2"
+};
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -30,7 +29,6 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     })
     .catch((error) => {
       if (error.code === 'auth/user-not-found') {
-        // User not found, create a new user
         createUserWithEmailAndPassword(auth, email, password)
           .then((userCredential) => {
             console.log('User registered and signed in:', userCredential.user);
