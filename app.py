@@ -1,10 +1,22 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
+import sqlite3
+from sklearn.linear_model import LinearRegression # type: ignore
+import numpy as np # type: ignore
 
 app = Flask(__name__)
 
+# Initialize SQLite database
+conn = sqlite3.connect('user_data.db', check_same_thread=False)
+c = conn.cursor()
+c.execute('''CREATE TABLE IF NOT EXISTS skills 
+             (id INTEGER PRIMARY KEY, skill TEXT, proficiency TEXT, hours INTEGER, objectives TEXT, custom_objective TEXT)''')
+conn.commit()
+
 @app.route('/')
 def home():
-    return render_template('form.html')
+    c.execute("SELECT * FROM skills")
+    skills = c.fetchall()
+    return render_template('my_learning.html', skills=skills)
 
 @app.route('/submit', methods=['POST'])
 def submit():
@@ -14,16 +26,19 @@ def submit():
     objectives = request.form.get('Objectives')
     custom_objective = request.form.get('CustomObjective')
 
-    # Process the data as needed
-    # Example: Print the values (you can replace this with other logic)
-    print(f"Skill: {skill_name}")
-    print(f"Proficiency: {proficiency}")
-    print(f"Hours per week: {hours_per_week}")
-    print(f"Objectives: {objectives}")
-    print(f"Custom Objective: {custom_objective if objectives == 'other' else 'N/A'}")
+    # Save data to the database
+    c.execute("INSERT INTO skills (skill, proficiency, hours, objectives, custom_objective) VALUES (?, ?, ?, ?, ?)",
+              (skill_name, proficiency, hours_per_week, objectives, custom_objective))
+    conn.commit()
 
-    # Return a response (render another template, send a message, etc.)
-    return "Form submitted successfully!"
+    # Simple machine learning example (adjust with actual logic)
+    X = np.array([hours_per_week]).reshape(-1, 1)
+    y = np.array([10, 20, 30])  # Example target values, replace with actual logic
+    model = LinearRegression().fit(X, y)
+    suggested_plan = model.predict(X)[0]
+
+    # Example response
+    return f"Form submitted successfully! Suggested plan: {suggested_plan}"
 
 if __name__ == '__main__':
     app.run(debug=True)
