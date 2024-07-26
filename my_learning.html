@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My learning</title>
+    <title>My Learning</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet">
+    <style>
+        #skillForm, #billingAddress {
+            display: none; 
+        }
+    </style>
 </head>
 <body>
-
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
           <span class="fs-4">FindmyPlan</span>
@@ -21,13 +25,11 @@
         </ul>
     </header>
 
-    
-
     <div class="container">
         <main>
           <div class="py-5 text-center">
-            <h2>Your Skill plan</h2>
-            <p class="lead">This platform will assess each student's strengths, weaknesses, learning pace, and interests to create a customized learning plan</p>
+            <h2>Your Skill Plan</h2>
+            <p class="lead">This platform will assess each student's strengths, weaknesses, learning pace, and interests to create a customized learning plan.</p>
           </div>
       
           <div class="row g-5">
@@ -79,161 +81,62 @@
               </form>
             </div>
 
-
             <div class="col-md-7 col-lg-8">
-              <h4 class="mb-3">Billing address</h4>
-              <button type="button" class="btn btn-outline-success">New Skill</button>
+              <button id="newSkillButton" type="button" class="btn btn-outline-primary">New Skill</button>
 
-              <form class="needs-validation" novalidate="">
+              <div id="billingAddress">
+                  <h4 class="mb-3">Skill and interest</h4>
+              </div>
+
+              <form id="skillForm" class="needs-validation" novalidate>
                 <div class="row g-3">
-                  <div class="col-sm-6">
-                    <label for="firstName" class="form-label">First name</label>
-                    <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
-                    <div class="invalid-feedback">
-                      Valid first name is required.
-                    </div>
-                  </div>
-      
-                  <div class="col-sm-6">
-                    <label for="lastName" class="form-label">Last name</label>
-                    <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
-                    <div class="invalid-feedback">
-                      Valid last name is required.
-                    </div>
-                  </div>
-      
                   <div class="col-12">
-                    <label for="username" class="form-label">Username</label>
-                    <div class="input-group has-validation">
-                      <span class="input-group-text">@</span>
-                      <input type="text" class="form-control" id="username" placeholder="Username" required="">
+                    <label for="firstName" class="form-label">Skill you want to learn</label>
+                    <input type="text" class="form-control" id="skillName" placeholder="Artificial Intelligence" value="" required>
                     <div class="invalid-feedback">
-                        Your username is required.
-                      </div>
+                      Please enter a skill.
                     </div>
                   </div>
-      
-                  <div class="col-12">
-                    <label for="email" class="form-label">Email <span class="text-body-secondary">(Optional)</span></label>
-                    <input type="email" class="form-control" id="email" placeholder="you@example.com">
-                    <div class="invalid-feedback">
-                      Please enter a valid email address for shipping updates.
-                    </div>
-                  </div>
-      
-                  <div class="col-12">
-                    <label for="address" class="form-label">Address</label>
-                    <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="">
-                    <div class="invalid-feedback">
-                      Please enter your shipping address.
-                    </div>
-                  </div>
-      
-                  <div class="col-12">
-                    <label for="address2" class="form-label">Address 2 <span class="text-body-secondary">(Optional)</span></label>
-                    <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
-                  </div>
-      
-                  <div class="col-md-5">
-                    <label for="country" class="form-label">Country</label>
-                    <select class="form-select" id="country" required="">
-                      <option value="">Choose...</option>
-                      <option>United States</option>
+
+                  <div class="col-md-12">
+                    <label for="Proficiency_Level" class="form-label">Current Proficiency Level</label>
+                    <select class="form-select" id="Proficiency" required>
+                      <option value="" selected disabled>Select level</option>
+                      <option>Beginner</option>
+                      <option>Intermediate</option>
+                      <option>Advanced</option>
                     </select>
                     <div class="invalid-feedback">
-                      Please select a valid country.
+                      Please select a valid proficiency level.
                     </div>
                   </div>
-      
-                  <div class="col-md-4">
-                    <label for="state" class="form-label">State</label>
-                    <select class="form-select" id="state" required="">
-                      <option value="">Choose...</option>
-                      <option>California</option>
+
+                  <div class="col-md-12">
+                    <label for="hours" class="form-label">How many hours per week can you dedicate</label>
+                    <input type="number" class="form-control" id="hoursaweek" placeholder="30" required>
+                    <div class="invalid-feedback">
+                      Weekly time commitment is required.
+                    </div>
+                  </div>
+                  
+                  <div class="col-md-12">
+                    <label for="Learning_Objectives" class="form-label">Learning Objectives</label>
+                    <select class="form-select" id="Objectives" required onchange="toggleCustomInput()">
+                      <option value="" selected disabled>Select objective</option>
+                      <option>Completing a project</option>
+                      <option>Passing a certification</option>
+                      <option>Acquiring a new job role</option>
+                      <option>Personal development</option>
+                      <option value="other">Other (please specify)</option>
                     </select>
+                    <input type="text" class="form-control mt-2" id="CustomObjective" placeholder="Specify your objective" style="display:none;">
                     <div class="invalid-feedback">
-                      Please provide a valid state.
+                      Please select or specify a valid learning objective.
                     </div>
                   </div>
+                </div>                
       
-                  <div class="col-md-3">
-                    <label for="zip" class="form-label">Zip</label>
-                    <input type="text" class="form-control" id="zip" placeholder="" required="">
-                    <div class="invalid-feedback">
-                      Zip code required.
-                    </div>
-                  </div>
-                </div>
-      
-                <hr class="my-4">
-      
-                <div class="form-check">
-                  <input type="checkbox" class="form-check-input" id="same-address">
-                  <label class="form-check-label" for="same-address">Shipping address is the same as my billing address</label>
-                </div>
-      
-                <div class="form-check">
-                  <input type="checkbox" class="form-check-input" id="save-info">
-                  <label class="form-check-label" for="save-info">Save this information for next time</label>
-                </div>
-      
-                <hr class="my-4">
-      
-                <h4 class="mb-3">Payment</h4>
-      
-                <div class="my-3">
-                  <div class="form-check">
-                    <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked="" required="">
-                    <label class="form-check-label" for="credit">Credit card</label>
-                  </div>
-                  <div class="form-check">
-                    <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required="">
-                    <label class="form-check-label" for="debit">Debit card</label>
-                  </div>
-                  <div class="form-check">
-                    <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required="">
-                    <label class="form-check-label" for="paypal">PayPal</label>
-                  </div>
-                </div>
-      
-                <div class="row gy-3">
-                  <div class="col-md-6">
-                    <label for="cc-name" class="form-label">Name on card</label>
-                    <input type="text" class="form-control" id="cc-name" placeholder="" required="">
-                    <small class="text-body-secondary">Full name as displayed on card</small>
-                    <div class="invalid-feedback">
-                      Name on card is required
-                    </div>
-                  </div>
-      
-                  <div class="col-md-6">
-                    <label for="cc-number" class="form-label">Credit card number</label>
-                    <input type="text" class="form-control" id="cc-number" placeholder="" required="">
-                    <div class="invalid-feedback">
-                      Credit card number is required
-                    </div>
-                  </div>
-      
-                  <div class="col-md-3">
-                    <label for="cc-expiration" class="form-label">Expiration</label>
-                    <input type="text" class="form-control" id="cc-expiration" placeholder="" required="">
-                    <div class="invalid-feedback">
-                      Expiration date required
-                    </div>
-                  </div>
-      
-                  <div class="col-md-3">
-                    <label for="cc-cvv" class="form-label">CVV</label>
-                    <input type="text" class="form-control" id="cc-cvv" placeholder="" required="">
-                    <div class="invalid-feedback">
-                      Security code required
-                    </div>
-                  </div>
-                </div>
-      
-                <hr class="my-4">
-      
-                <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+                <button class="w-100 btn btn-primary btn-lg mt-3" type="submit">Submit</button>
               </form>
             </div>
           </div>
@@ -244,13 +147,38 @@
         </footer>
     </div>
 
+    <script>
+        document.getElementById('newSkillButton').addEventListener('click', function() {
+            document.getElementById('skillForm').style.display = 'block'; // Show the form
+            document.getElementById('billingAddress').style.display = 'block'; // Show the billing address
+            this.style.display = 'none'; // Hide the button
+        });
 
+        function toggleCustomInput() {
+            var select = document.getElementById("Objectives");
+            var customInput = document.getElementById("CustomObjective");
+            if (select.value === "other") {
+                customInput.style.display = "block";
+            } else {
+                customInput.style.display = "none";
+            }
+        }
 
-
-
-    
-
+        // Bootstrap form validation
+        (function () {
+            'use strict'
+            var forms = document.querySelectorAll('.needs-validation')
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
 </body>
 </html>
-
-

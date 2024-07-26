@@ -38,7 +38,7 @@
 
 .col-md-7 {
     flex: 0 0 auto;
-    width: 58.33333333%;
+    width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,29 +48,8 @@
 @media (min-width: 768px) {
     .col-md-5 {
       flex: 0 0 auto;
-      width: 41.66666667%;
+      width: 50%;
       border-left-style: solid;
       border-left-color: dodgerblue;
     }
-  }
-
-/*
-General Interest and Motivation
-
-    Motivation Level: On a scale of 1 to 10, how motivated are you to learn new skills?
-    Reason for Learning: What is your primary reason for wanting to learn new skills?
-     (e.g., career advancement, personal interest, academic requirements)
-
-Learning Style Preferences
-
-    Preferred Learning Method: Which method of learning do you find most effective?
-     (Visual aids, interactive hands-on practice, reading materials, listening to lectures, etc.)
-    Previous Learning Experiences: Describe a past learning experience that you found particularly 
-    effective or enjoyable. What made it effective for you?
-
-Availability and Time Commitment
-
-    Weekly Time Commitment: How many hours per week can you dedicate to learning a new skill?
-    Preferred Learning Schedule: What time of day do you find most productive for studying? 
-    (Morning, Afternoon, Evening)
-*/
+}
