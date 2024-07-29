@@ -8,8 +8,15 @@ def index():
 
 @app.route('/home')
 def home():
-    print("Home route accessed")
     return render_template('home.html')
+
+@app.route('/my_learning')
+def my_learning():
+    return render_template('my_learning.html')
+
+@app.route('/profile')
+def profile():
+    return render_template('profile.html')
 
 @app.route('/submit', methods=['POST'])
 def submit_skill():
@@ -19,8 +26,7 @@ def submit_skill():
     learning_objective = request.form['Objectives']
     custom_objective = request.form.get('CustomObjective', '')  # Optional field
 
-    # Now you can process the data as needed, for example:
-    # Save the data to a database, log it, etc.
+    # Process the data
     print(f"Skill: {skill_name}, Proficiency: {proficiency}, Hours: {hours_per_week}, Objective: {learning_objective}, Custom: {custom_objective}")
 
     return redirect(url_for('home'))
