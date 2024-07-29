@@ -23,14 +23,14 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
   signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     console.log('Signed in:', userCredential.user);
-    window.location.href = '/home';  // Ensure this matches your Flask route
+    window.location.href = '/home'; 
   })
   .catch((error) => {
     if (error.code === 'auth/user-not-found') {
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           console.log('User registered and signed in:', userCredential.user);
-          window.location.href = '/home';  // Correct this as well
+          window.location.href = '/home'; 
         })
         .catch((createError) => {
           console.error('Error creating user:', createError.message);
